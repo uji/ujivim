@@ -33,19 +33,10 @@ jobs:
           --disable-xsmp
         make install
     - name: tar
-      run: tar -zcvf /tmp/dist.tar.gz /tmp/dist
+      run: tar -zcvf /tmp/ujivim.linux-amd64.tar.gz /tmp/dist
     - name: release
-      uses: actions/create-release@v1
-      id: create_release
+      uses: softprops/action-gh-release@v1
       with:
-        draft: false
-        prerelease: false
-        release_name: commit-${{ github.sha }}
+        name: commit-${{ github.sha }}
         tag_name: commit-${{ github.sha }}
-    - name: upload artifact
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /tmp/dist.tar.gz
-        asset_name: ujivim.linux-amd64.tar.gz
-        asset_content_type: application/gzip
+        files: /tmp/dist.tar.gz
