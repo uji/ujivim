@@ -39,4 +39,4 @@ jobs:
       with:
         name: commit-${{ github.sha }}
         tag_name: commit-${{ github.sha }}
-        files: /tmp/dist.tar.gz
+        files: /tmp/ujivim.linux-amd64.tar.gz
