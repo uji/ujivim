@@ -1,0 +1,36 @@
+name: Build Vim
+
+on:
+  push:
+    branch:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: clone
+      run: git clone --depth 1 https://github.com/vim/vim.git
+
+    - name: make
+      run: |
+        mkdir /dist
+        cd vim
+        ./configure \
+          --prefix=/dist \
+          --enable-multibyte \
+          --enable-nls \
+          --enable-cscope \
+          --without-x \
+          --disable-xim \
+          --disable-gui \
+          --disable-sysmouse \
+          --disable-netbeans \
+          --disable-xsmp
+        make install
+    - name: publish artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist-for-linux
+        path: /dist
