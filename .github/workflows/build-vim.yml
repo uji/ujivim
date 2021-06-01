@@ -15,10 +15,10 @@ jobs:
 
     - name: make
       run: |
-        mkdir ~/dist
+        mkdir /tmp/dist
         cd vim
         ./configure \
-          --prefix=~/dist \
+          --prefix=/tmp/dist \
           --enable-multibyte \
           --enable-nls \
           --enable-cscope \
@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: dist-for-linux
-        path: ~/dist
+        path: /tmp/dist
