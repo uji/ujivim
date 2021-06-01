@@ -32,6 +32,8 @@ jobs:
           --disable-netbeans \
           --disable-xsmp
         make install
+    - name: tar
+      run: tar -zcvf /tmp/dist.tar.gz /tmp/dist
     - name: release
       uses: actions/create-release@v1
       id: create_release
@@ -40,9 +42,6 @@ jobs:
         prerelease: false
         release_name: ${{ steps.version.outputs.version }}
         tag_name: ${{ github.ref }}
-        body_path: CHANGELOG.md
-    - name: tar
-      run: tar -zcvf /tmp/dist.tar.gz /tmp/dist
     - name: upload artifact
       uses: actions/upload-release-asset@v1
       with:
