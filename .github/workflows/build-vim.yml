@@ -40,8 +40,8 @@ jobs:
       with:
         draft: false
         prerelease: false
-        release_name: ${{ github.sha }}
-        tag_name: ${{ github.sha }}
+        release_name: commit-${{ github.sha }}
+        tag_name: commit-${{ github.sha }}
     - name: upload artifact
       uses: actions/upload-release-asset@v1
       with:
