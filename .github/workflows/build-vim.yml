@@ -33,7 +33,7 @@ jobs:
           --disable-xsmp
         make install
     - name: tar
-      run: tar -zcvf /tmp/ujivim.linux-amd64.tar.gz /tmp/dist
+      run: tar -zcvf /tmp/ujivim.linux-amd64.tar.gz -C /tmp dist
     - name: release
       uses: softprops/action-gh-release@v1
       with:
